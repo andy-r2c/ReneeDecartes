@@ -1,0 +1,21 @@
+on:
+    branches:
+    - main
+    - master
+    paths:
+    - .github/workflows/semgrepssc.yml
+  schedule:
+  - cron: '0 0 * * 1-6'
+name: Semgrep
+jobs:
+  semgrep:
+    name: Scan
+    runs-on: ubuntu-20.04
+    env:
+      SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
+    container:
+      image: returntocorp/semgrep
+    steps:
+    - uses: actions/checkout@v3
+    - name: SSC
+      run: semgrep ci --supply-chain
