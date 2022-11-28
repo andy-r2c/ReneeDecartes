@@ -24,5 +24,6 @@ jobs:
       if: github.event.schedule != '0 0 * * *'
       run: semgrep ci
     - name: SSC
+      if: github.event.schedule != '0 0 * * 0'
       run: semgrep ci --supply-chain
 
