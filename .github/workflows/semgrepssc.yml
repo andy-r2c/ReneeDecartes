@@ -1,12 +1,7 @@
 on:
-    branches:
-    - main
-    - master
-    paths:
-    - .github/workflows/semgrepssc.yml
-  schedule:
-  - cron: '0 0 * * 1-6'
-name: Semgrep
+    schedule:
+    - cron: '0 0 * * 1-6'
+name: Semgrep SSC
 jobs:
   semgrep:
     name: Scan
@@ -17,5 +12,4 @@ jobs:
       image: returntocorp/semgrep
     steps:
     - uses: actions/checkout@v3
-    - name: SSC
-      run: semgrep ci --supply-chain
+    - run: semgrep ci --supply-chain
